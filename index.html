@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Supermercado De Sordi</title>
+  <meta name="description" content="Supermercado De Sordi: nossa família servindo à sua. Nosso site está chegando; enquanto isso, a gente te espera na loja.">
+  <meta name="theme-color" content="#fe6c24">
+  <link rel="icon" href="icone.png" type="image/png">
+  <link rel="apple-touch-icon" href="icone.png">
+  <!-- O cartão que aparece quando alguém manda o link pelo WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Supermercado De Sordi">
+  <meta property="og:title" content="Supermercado De Sordi">
+  <meta property="og:description" content="Nossa família servindo à sua. Nosso site está chegando.">
+  <meta property="og:url" content="https://www.supdesordi.com.br/">
+  <meta property="og:image" content="https://www.supdesordi.com.br/compartilhar.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --marca: #fe6c24;
+      --fundo: #fff8f2;
+      --texto: #1c1512;
+      --suave: #6b5e55;
+      --selo-fundo: rgba(254, 108, 36, 0.12);
+      --selo-texto: #b3470d;
+      --brilho: rgba(254, 108, 36, 0.20);
+      --trilho: rgba(28, 21, 18, 0.08);
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --fundo: #120e0c;
+        --texto: #f7efe9;
+        --suave: #b9aca2;
+        --selo-fundo: rgba(254, 108, 36, 0.16);
+        --selo-texto: #ff9d66;
+        --brilho: rgba(254, 108, 36, 0.16);
+        --trilho: rgba(247, 239, 233, 0.10);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-weight: 500;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    /* A faixa laranja no alto: a cor do SD da logo. */
+    body::before {
+      content: ""; position: fixed; inset: 0 0 auto 0; height: 6px; z-index: 2;
+      background: linear-gradient(90deg, var(--marca), #ff9a5c, var(--marca));
+    }
+    .palco {
+      position: relative; min-height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 56px 20px 32px; isolation: isolate;
+    }
+    /* Duas luzes laranja bem suaves atrás de tudo. */
+    .luz { position: absolute; z-index: -1; border-radius: 50%; filter: blur(70px); pointer-events: none; background: var(--brilho); }
+    .luz-1 { width: 520px; height: 520px; top: -160px; left: -140px; }
+    .luz-2 { width: 620px; height: 620px; bottom: -240px; right: -200px; }
+
+    .conteudo { width: 100%; max-width: 780px; text-align: center; }
+    .logo { display: block; width: min(400px, 80vw); height: auto; margin: 0 auto; animation: surgir 0.9s ease-out both; }
+
+    .selo {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 34px; padding: 8px 16px; border-radius: 999px;
+      background: var(--selo-fundo); color: var(--selo-texto);
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      animation: surgir 0.9s 0.15s ease-out both;
+    }
+    .ponto { width: 8px; height: 8px; border-radius: 50%; background: var(--marca); position: relative; }
+    .ponto::after {
+      content: ""; position: absolute; inset: -4px; border-radius: 50%;
+      border: 2px solid var(--marca); opacity: 0; animation: pulsar 2s ease-out infinite;
+    }
+
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(2rem, 6vw, 3.1rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em;
+      animation: surgir 0.9s 0.25s ease-out both;
+    }
+    h1 span { color: var(--marca); }
+    .texto {
+      margin: 18px auto 0; max-width: 34em;
+      color: var(--suave); font-size: clamp(1rem, 2.6vw, 1.12rem); line-height: 1.65;
+      animation: surgir 0.9s 0.35s ease-out both;
+    }
+    .convite {
+      margin-top: 14px; font-weight: 600; font-size: clamp(1rem, 2.6vw, 1.12rem);
+      animation: surgir 0.9s 0.45s ease-out both;
+    }
+
+    /* "Em construção", sem cara de erro: uma luz que corre num trilho fino. */
+    .trilho {
+      position: relative; width: min(240px, 60vw); height: 4px; margin: 36px auto 0;
+      border-radius: 999px; background: var(--trilho); overflow: hidden;
+      animation: surgir 0.9s 0.55s ease-out both;
+    }
+    .trilho span {
+      position: absolute; top: 0; bottom: 0; width: 40%; border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--marca), transparent);
+      animation: correr 2.4s ease-in-out infinite;
+    }
+
+    footer { margin-top: 56px; color: var(--suave); font-size: 0.82rem; }
+
+    @keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @keyframes pulsar { 0% { opacity: 0.7; transform: scale(0.6); } 100% { opacity: 0; transform: scale(1.8); } }
+    @keyframes correr { 0% { left: -40%; } 100% { left: 100%; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; }
+      .trilho span { left: 30%; }
+    }
+    @media (max-width: 480px) {
+      .palco { padding-top: 44px; }
+      .selo { margin-top: 26px; }
+      .luz-1 { width: 320px; height: 320px; }
+      .luz-2 { width: 380px; height: 380px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="palco">
+    <div class="luz luz-1" aria-hidden="true"></div>
+    <div class="luz luz-2" aria-hidden="true"></div>
+    <div class="conteudo">
+      <picture>
+        <source srcset="logo-escura.png" media="(prefers-color-scheme: dark)">
+        <img class="logo" src="logo.png" width="1000" height="674" alt="Supermercado De Sordi. Nossa família servindo à sua.">
+      </picture>
+      <p class="selo"><span class="ponto" aria-hidden="true"></span>Site em desenvolvimento</p>
+      <h1>Nosso site está <span>chegando</span>.</h1>
+      <p class="texto">Estamos preparando um espaço na internet com o mesmo cuidado que você encontra nos nossos corredores. Em breve, ofertas, novidades e muito mais.</p>
+      <p class="convite">Enquanto isso, a gente te espera na loja.</p>
+      <div class="trilho" aria-hidden="true"><span></span></div>
+    </div>
+    <footer>© <span id="ano">2026</span> Supermercado De Sordi</footer>
+  </main>
+  <script>document.getElementById('ano').textContent = String(new Date().getFullYear());</script>
+</body>
+</html>
