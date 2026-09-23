@@ -2,10 +2,29 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Supermercado De Sordi</title>
-  <!-- Endereço que não existe (um link velho, uma tela do ERP aberta fora da loja): volta para a página inicial. -->
-  <meta http-equiv="refresh" content="0; url=/">
-  <link rel="canonical" href="https://www.supdesordi.com.br/">
+  <!--
+    Endereço que não existe no site. Quando o ERP deixar este endereço (a etapa 4 de
+    docs/mudanca-de-endereco.md, no repositório do ERP), links antigos do ERP — favoritos,
+    fotos do QR do "Abrir caixa", o ícone antigo no celular — caem aqui: eles seguem para o
+    MESMO caminho no endereço novo do ERP. Qualquer outro caminho volta para o início.
+  -->
+  <script>
+    (function () {
+      var doErp = ['/acougue', '/ajustes-erp', '/aparelho', '/aparencia', '/avisos', '/balanca', '/cesta', '/codigos',
+        '/config', '/destravar', '/digitalizar', '/entradas', '/etiquetas', '/fechamento', '/fiscal', '/fornecedores',
+        '/gaveta', '/login', '/melhorias', '/nfe', '/notificacoes', '/pagamentos', '/pdv', '/problemas', '/produtos',
+        '/relatorios', '/simples', '/trocar', '/validades'];
+      var p = location.pathname;
+      var ehDoErp = doErp.some(function (x) { return p === x || p.indexOf(x + '/') === 0; });
+      location.replace(ehDoErp ? 'https://erp.supdesordi.com.br' + p + location.search : '/');
+    })();
+  </script>
+  <meta http-equiv="refresh" content="3; url=/">
+  <link rel="canonical" href="https://supdesordi.com.br/">
 </head>
-<body><a href="/">Supermercado De Sordi</a></body>
+<body style="font-family: system-ui, sans-serif; text-align: center; padding: 48px 20px;">
+  <p>Levando você ao lugar certo… <a href="/">Supermercado De Sordi</a></p>
+</body>
 </html>

@@ -32,6 +32,7 @@
       --selo-texto: #b3470d;
       --brilho: rgba(254, 108, 36, 0.20);
       --trilho: rgba(28, 21, 18, 0.08);
+      --borda-botao: rgba(28, 21, 18, 0.22);
       color-scheme: light dark;
     }
     @media (prefers-color-scheme: dark) {
@@ -43,6 +44,7 @@
         --selo-texto: #ff9d66;
         --brilho: rgba(254, 108, 36, 0.16);
         --trilho: rgba(247, 239, 233, 0.10);
+        --borda-botao: rgba(247, 239, 233, 0.28);
       }
     }
     * { box-sizing: border-box; margin: 0; }
@@ -69,6 +71,22 @@
     .luz { position: absolute; z-index: -1; border-radius: 50%; filter: blur(70px); pointer-events: none; background: var(--brilho); }
     .luz-1 { width: 520px; height: 520px; top: -160px; left: -140px; }
     .luz-2 { width: 620px; height: 620px; bottom: -240px; right: -200px; }
+
+    /* O caminho da equipe para o ERP. Fora da loja o endereço não abre (é da rede interna). */
+    .entrar {
+      position: absolute; top: 20px; right: 20px; z-index: 3;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+      text-decoration: none; animation: surgir 0.9s 0.6s ease-out both;
+    }
+    .entrar span:first-child {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: 999px;
+      border: 1.5px solid var(--borda-botao); color: var(--texto);
+      font-size: 0.9rem; font-weight: 600; transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .entrar:hover span:first-child, .entrar:focus-visible span:first-child { background: var(--marca); border-color: var(--marca); color: #fff; }
+    .entrar small { color: var(--suave); font-size: 0.72rem; }
+    .entrar svg { width: 15px; height: 15px; }
 
     .conteudo { width: 100%; max-width: 780px; text-align: center; }
     .logo { display: block; width: min(400px, 80vw); height: auto; margin: 0 auto; animation: surgir 0.9s ease-out both; }
@@ -124,7 +142,8 @@
       .trilho span { left: 30%; }
     }
     @media (max-width: 480px) {
-      .palco { padding-top: 44px; }
+      /* Espaço para o botão Entrar no alto: num celular pequeno a logo subia até ele. */
+      .palco { padding-top: 96px; }
       .selo { margin-top: 26px; }
       .luz-1 { width: 320px; height: 320px; }
       .luz-2 { width: 380px; height: 380px; }
@@ -135,6 +154,13 @@
   <main class="palco">
     <div class="luz luz-1" aria-hidden="true"></div>
     <div class="luz luz-2" aria-hidden="true"></div>
+    <a class="entrar" href="https://erp.supdesordi.com.br/" title="Sistema da equipe: só abre dentro da rede da loja">
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Entrar
+      </span>
+      <small>equipe · rede da loja</small>
+    </a>
     <div class="conteudo">
       <picture>
         <source srcset="logo-escura.png" media="(prefers-color-scheme: dark)">
